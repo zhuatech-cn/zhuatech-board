@@ -5,8 +5,14 @@ import jakarta.validation.constraints.NotBlank;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+/**
+ * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+ */
 @Service
 public class BoardResolutionGovernanceService {
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public Result evaluate(Request request) {
         List<String> blockers = new ArrayList<>();
         int eligible = request.totalDirectors() - request.conflictedDirectors();
@@ -20,10 +26,16 @@ public class BoardResolutionGovernanceService {
         return new Result(request.resolutionNo(), decision, eligible, quorumRequired,
                 List.copyOf(blockers), blockers.isEmpty());
     }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Request(@NotBlank String resolutionNo, @Min(1) int totalDirectors,
                           @Min(0) int conflictedDirectors, @Min(0) int presentEligibleDirectors,
                           @Min(0) int yesVotes, boolean noticePeriodSatisfied,
                           boolean conflictsDeclared, boolean minutesEvidenceComplete) {
+        /**
+         * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+         */
         public Request {
             if (resolutionNo == null || resolutionNo.isBlank()) throw new IllegalArgumentException("resolutionNo is required");
             if (totalDirectors < 1 || conflictedDirectors < 0 || conflictedDirectors >= totalDirectors)
@@ -32,6 +44,9 @@ public class BoardResolutionGovernanceService {
                 throw new IllegalArgumentException("invalid attendance or votes");
         }
     }
+    /**
+     * 商业授权或定制开发请微信添加微信号zhuatech或zhuatech2进行咨询。
+     */
     public record Result(String resolutionNo, String decision, int eligibleDirectors,
                          int quorumRequired, List<String> blockers, boolean effective) {}
 }
